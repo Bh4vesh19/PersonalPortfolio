@@ -1,167 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Professional CV</title>
-    <style>
-        body {
-            background: #f4f6f8;
-            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-            color: #222;
-            margin: 0;
-            padding: 0;
-        }
-        .cv-container {
-            background: #fff;
-            max-width: 800px;
-            margin: 40px auto;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-            border-radius: 12px;
-            padding: 40px 50px;
-        }
-        .header {
-            display: flex;
-            align-items: center;
-            border-bottom: 2px solid #e0e4e8;
-            padding-bottom: 18px;
-            margin-bottom: 30px;
-        }
-        .avatar {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            margin-right: 28px;
-            object-fit: cover;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.09);
-        }
-        .name-title {
-            flex: 1;
-        }
-        .name-title h1 {
-            font-size: 2.5rem;
-            margin: 0 0 6px 0;
-            color: #1a1a1a;
-        }
-        .name-title p {
-            margin: 0;
-            color: #3e4a5b;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-        .contact {
-            margin-top: 10px;
-            font-size: 0.97rem;
-            color: #5b6b7f;
-        }
-        h2 {
-            color: #1e6f9f;
-            margin-top: 32px;
-            margin-bottom: 12px;
-            font-size: 1.3rem;
-            border-left: 4px solid #1e6f9f;
-            padding-left: 10px;
-        }
-        ul, ol {
-            margin: 0 0 18px 20px;
-        }
-        li {
-            margin-bottom: 7px;
-        }
-        .section {
-            margin-bottom: 20px;
-        }
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-        .skills-list li {
-            background: #e3f0fa;
-            color: #1e6f9f;
-            border-radius: 16px;
-            padding: 7px 18px;
-            font-size: 0.97rem;
-            font-weight: 500;
-        }
-        @media (max-width: 600px) {
-            .cv-container {
-                padding: 20px 8px;
-            }
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .avatar {
-                margin-bottom: 14px;
-                margin-right: 0;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bhavesh Suthar - CV</title>
+  <style>
+    body {
+      background: #f4f6f8;
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      color: #222;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    .cv-container {
+      background: #fff;
+      max-width: 800px;
+      margin: 40px auto;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      padding: 40px 50px;
+      animation: fadeInUp 1s ease-out both;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      border-bottom: 2px solid #e0e4e8;
+      padding-bottom: 18px;
+      margin-bottom: 30px;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin-right: 28px;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+      transition: transform 0.4s ease;
+    }
+
+    .avatar:hover {
+      transform: scale(1.08);
+    }
+
+    .name-title {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .name-title h1 {
+      font-size: 2rem;
+      margin: 0 0 6px 0;
+      color: #1a1a1a;
+      transition: color 0.3s;
+    }
+
+    .name-title h1:hover {
+      color: #1e6f9f;
+    }
+
+    .name-title p {
+      margin: 0;
+      color: #3e4a5b;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .contact {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: #5b6b7f;
+      opacity: 0.85;
+    }
+
+    h2 {
+      color: #1e6f9f;
+      margin-top: 32px;
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+      border-left: 4px solid #1e6f9f;
+      padding-left: 10px;
+      position: relative;
+      transition: all 0.3s ease-in-out;
+    }
+
+    h2::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 10px;
+      width: 0%;
+      height: 2px;
+      background: #1e6f9f;
+      transition: width 0.3s;
+    }
+
+    h2:hover::after {
+      width: 80%;
+    }
+
+    ul {
+      margin: 0 0 18px 20px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 7px;
+    }
+
+    .section {
+      margin-bottom: 24px;
+      animation: fadeInUp 0.8s ease forwards;
+      animation-delay: 0.2s;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .skills-list li {
+      background: #e3f0fa;
+      color: #1e6f9f;
+      border-radius: 16px;
+      padding: 7px 16px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: default;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .skills-list li:hover {
+      background: #c5e4f7;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      .cv-container {
+        padding: 20px 14px;
+      }
+
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .avatar {
+        margin-bottom: 14px;
+        margin-right: 0;
+      }
+
+      .name-title h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="cv-container">
-        <div class="header">
-            <img src="HD-wallpaper-obito-uchia-akatsuki-naruto-obitouchia.jpg" alt="Your Photo" class="avatar">
-            <div class="name-title">
-                <h1> Bhavesh Suthar</h1>
-                <p>Aspiring Software Developer</p>
-                <div class="contact">
-                    Email: bhaveshsutharb830@gmail.com<br>
-                    Phone: +91-7715915731<br>
-                    Location: Mumbai, Maharashtra
-                </div>
-            </div>
+  <div class="cv-container">
+    <div class="header">
+      <img src="HD-wallpaper-obito-uchia-akatsuki-naruto-obitouchia.jpg" alt="Your Photo" class="avatar" />
+      <div class="name-title">
+        <h1>Bhavesh Suthar</h1>
+        <p>Aspiring Software Developer</p>
+        <div class="contact">
+          Email: bhaveshsutharb830@gmail.com<br />
+          Phone: +91-7715915731<br />
+          Location: Mumbai, Maharashtra
         </div>
-        <div class="section">
-            <h2>Profile</h2>
-            <p>Programming Basics Learning languages like Python, C, or Java.
-Goal Get internships, work on projects, maybe do MCA or certifications.
-Try mini-projects in different areas to explore.</p>
-        </div>
-        <div class="section">
-            <h2>Education</h2>
-            <ul>
-                <li>Bachelor of Computer application from Tilak Vidyapeth University (2nd year)</li>
-            </ul>
-        </div>
-        <div class="section">
-            <h2>Actively learning programming fundamentals and building foundational projects as a first-year BCA student.
-
-</h2>
-            <ul>
-                <li>Learning programming basics and building simple projects as a second-year BCA student.</li>
-
-            </ul>
-        </div>
-        <div class="section">
-            <h2>Skills</h2>
-            <ul class="skills-list">
-                <li><ul class="skills-list">
-  <li>Programming: C, C++, Python (Basic)</li>
-
-  <li>Web Development: HTML, CSS, JavaScript (Basic)</li>
-
-  <li>Database: MySQL (Basic Queries)</li>
-
-  <li>Tools: VS Code, Git & GitHub (Basic), MS Office</li>
-
-  <li>Soft Skills: Problem-Solving, Teamwork, Communication</li>
-
-</ul>
-        </div>
-        <div class="section">
-            <h2>Projects</h2>
-            <ul>
-                <li><strong>Personal Portfolio Website:</strong> Brief Developed a responsive personal website to showcase my skills, projects, and resume using HTML, CSS, and JavaScript.
-Contribution: Designed the layout, implemented responsive design for mobile devices, and integrated interactive elements to enhance user experience.</li>
-
-            </ul>
-        </div>
+      </div>
     </div>
+
+    <div class="section">
+      <h2>Profile</h2>
+      <p>
+        Programming basics learner with interests in Python, C, and Java. Exploring mini-projects and looking forward to internships, MCA, or certifications to boost career readiness.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Education</h2>
+      <ul>
+        <li>Bachelor of Computer Application – Tilak Vidyapeth University (2nd Year)</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Current Learning</h2>
+      <ul>
+        <li>Building foundational projects while learning core programming concepts.</li>
+        <li>Exploring full-stack development and databases.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Skills</h2>
+      <ul class="skills-list">
+        <li>C</li>
+        <li>C++</li>
+        <li>Python (Basic)</li>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript (Basic)</li>
+        <li>MySQL (Basic Queries)</li>
+        <li>VS Code</li>
+        <li>Git & GitHub (Basic)</li>
+        <li>MS Office</li>
+        <li>Problem-Solving</li>
+        <li>Teamwork</li>
+        <li>Communication</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Projects</h2>
+      <ul>
+        <li>
+          <strong>Personal Portfolio Website:</strong> Developed a responsive personal website to showcase my skills and resume using HTML, CSS, and JavaScript. Designed layout and integrated interactive elements.
+        </li>
+      </ul>
+    </div>
+  </div>
 </body>
 </html>
-

@@ -3,66 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bhavesh Suthar - Developer CV</title>
-
-  <!-- ✅ STYLE -->
+  <title>Bhavesh Suthar - CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f0f4f9;
+      --bg: #f9fafb;
       --text: #1a1a1a;
-      --accent: #0077ff;
+      --accent: #007acc;
       --card: #ffffff;
-      --section-bg: #eaf2fb;
+      --section-bg: #e7f0f7;
+      --pattern-light: url('https://www.transparenttextures.com/patterns/graphy.png');
+      --pattern-dark: url('https://www.transparenttextures.com/patterns/dark-denim.png');
     }
 
     body.dark {
-      --bg: #0d0d0d;
+      --bg: #121212;
       --text: #f2f2f2;
-      --accent: #4fc3f7;
-      --card: #1a1a1a;
-      --section-bg: #2a2a2a;
+      --accent: #64b5f6;
+      --card: #1e1e1e;
+      --section-bg: #2b2b2b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--bg);
+      font-family: 'Comic Neue', cursive;
+      background: var(--bg) var(--pattern-light);
       color: var(--text);
-      line-height: 1.7;
-      overflow-x: hidden;
+      line-height: 1.6;
+      transition: all 0.3s ease;
+      scroll-behavior: smooth;
+    }
+
+    body.dark {
+      background: var(--bg) var(--pattern-dark);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 30px;
+      background: var(--card);
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
     }
 
     .dark-mode-toggle {
       position: fixed;
       top: 20px;
       right: 20px;
-      padding: 10px 16px;
-      border-radius: 8px;
+      padding: 10px 18px;
+      border-radius: 6px;
       background: var(--accent);
-      color: white;
+      color: #fff;
       border: none;
       cursor: pointer;
-      z-index: 100;
       font-weight: bold;
-    }
-
-    .container {
-      max-width: 960px;
-      margin: 80px auto;
-      padding: 40px;
-      background: var(--card);
-      border-radius: 16px;
-      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
     }
 
     .header {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 25px;
       flex-wrap: wrap;
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 30px;
+      margin-bottom: 40px;
     }
 
     .avatar {
@@ -70,66 +79,85 @@
       height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
     h1 {
       font-size: 2.5rem;
-      margin: 0;
       color: var(--accent);
     }
 
-    p.subheading {
-      font-size: 1.1rem;
-      color: gray;
+    .typing {
+      font-size: 1.2rem;
       margin-top: 5px;
+      font-weight: bold;
+      color: var(--text);
     }
 
     .section {
-      margin-top: 60px;
-      padding: 40px;
-      border-radius: 12px;
       background: var(--section-bg);
-      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
+      padding: 24px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.6s ease-out;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .section h2 {
-      margin-top: 0;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
+      margin-bottom: 15px;
       color: var(--accent);
-      border-left: 5px solid var(--accent);
-      padding-left: 12px;
-      position: relative;
-    }
-
-    ul {
-      padding-left: 24px;
-      margin: 0;
     }
 
     .skills-list {
+      list-style: none;
       display: flex;
       flex-wrap: wrap;
-      list-style: none;
-      padding: 0;
-      margin-top: 20px;
-      gap: 12px;
+      gap: 10px;
+      margin-top: 10px;
     }
 
     .skills-list li {
       background: var(--accent);
       color: white;
-      padding: 8px 18px;
+      padding: 8px 16px;
       border-radius: 20px;
-      font-weight: 500;
-      font-size: 0.95rem;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .skills-list li:hover {
+      transform: scale(1.05);
+      background: #005999;
+    }
+
+    .download-btn {
+      background: var(--accent);
+      color: white;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      margin-top: 20px;
+      display: inline-block;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .download-btn:hover {
+      background: #005999;
     }
 
     @media (max-width: 768px) {
-      .container {
-        padding: 20px;
-      }
-
       .header {
         flex-direction: column;
         align-items: flex-start;
@@ -143,42 +171,34 @@
         width: 100px;
         height: 100px;
       }
-
-      .section {
-        padding: 20px;
-      }
     }
   </style>
 </head>
 <body>
-  <!-- ✅ DARK MODE -->
-  <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌓 Toggle Theme</button>
 
-  <!-- ✅ MAIN CONTENT -->
+  <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Toggle</button>
+
   <div class="container" id="smooth-content">
     <div class="header">
-      <img src="HD-wallpaper-obito-uchia-akatsuki-naruto-obitouchia.jpg" alt="Bhavesh Suthar" class="avatar" />
+      <img src="HD-wallpaper-obito-uchia-akatsuki-naruto-obitouchia.jpg" alt="Bhavesh Suthar" class="avatar">
       <div>
         <h1>Bhavesh Suthar</h1>
-        <p class="subheading">Aspiring Software Developer</p>
+        <div class="typing" id="typing"></div>
         <p>Email: bhaveshsutharb830@gmail.com</p>
         <p>Phone: +91-7715915731</p>
         <p>Location: Mumbai, Maharashtra</p>
+        <a href="Bhavesh_Suthar_Resume.pdf" class="download-btn" download>📄 Download Resume</a>
       </div>
     </div>
 
     <div class="section">
       <h2>👨‍💻 Profile</h2>
-      <p>
-        Programming basics learner with interests in Python, C, and Java. Exploring mini-projects and looking forward to internships, MCA, or certifications to boost career readiness.
-      </p>
+      <p>Programming basics learner with interests in Python, C, and Java. Exploring mini-projects and looking forward to internships, MCA, or certifications to boost career readiness.</p>
     </div>
 
     <div class="section">
       <h2>🎓 Education</h2>
-      <ul>
-        <li><strong>BCA</strong> – Tilak Vidyapeth University (2nd Year)</li>
-      </ul>
+      <p><strong>BCA</strong> – Tilak Vidyapeth University (2nd Year)</p>
     </div>
 
     <div class="section">
@@ -215,36 +235,48 @@
     </div>
   </div>
 
-  <!-- ✅ SCRIPT: GSAP + LENIS -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.36/bundled/lenis.min.js"></script>
-
+  <!-- ✅ Scripts -->
   <script>
-    // 🌙 Dark Mode
+    // ✅ Dark Mode Toggle
     function toggleDarkMode() {
       document.body.classList.toggle("dark");
     }
 
-    // 🌀 GSAP animations
-    gsap.from(".header", { opacity: 0, y: -50, duration: 1 });
-    gsap.from(".section", {
-      scrollTrigger: ".section",
-      opacity: 0,
-      y: 60,
-      duration: 1,
-      ease: "power2.out",
-      stagger: 0.4
+    // ✅ Typing Animation
+    const roles = ["Aspiring Developer", "Learning Full-Stack", "Problem Solver"];
+    let index = 0, char = 0;
+    const typingDiv = document.getElementById("typing");
+
+    function type() {
+      if (char < roles[index].length) {
+        typingDiv.textContent += roles[index].charAt(char);
+        char++;
+        setTimeout(type, 100);
+      } else {
+        setTimeout(() => {
+          typingDiv.textContent = "";
+          char = 0;
+          index = (index + 1) % roles.length;
+          type();
+        }, 1500);
+      }
+    }
+    type();
+
+    // ✅ Scroll Animation with Intersection Observer
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.2
     });
 
-    // 🧘‍♂️ Lenis smooth scrolling
-    const lenis = new Lenis({ duration: 1.2, smooth: true });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
+    });
   </script>
 </body>
 </html>

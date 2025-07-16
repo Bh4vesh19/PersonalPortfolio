@@ -10,6 +10,7 @@
       --bg: #f9fafb;
       --text: #1a1a1a;
       --accent: #007acc;
+      --accent-dark: #005999;
       --card: #ffffff;
       --section-bg: #e7f0f7;
       --pattern-light: url('https://www.transparenttextures.com/patterns/graphy.png');
@@ -20,6 +21,7 @@
       --bg: #121212;
       --text: #f2f2f2;
       --accent: #64b5f6;
+      --accent-dark: #1a73e8;
       --card: #1e1e1e;
       --section-bg: #2b2b2b;
     }
@@ -64,6 +66,11 @@
       cursor: pointer;
       font-weight: bold;
       z-index: 1000;
+      transition: background 0.3s ease;
+    }
+
+    .dark-mode-toggle:hover {
+      background: var(--accent-dark);
     }
 
     .header {
@@ -74,17 +81,32 @@
       margin-bottom: 40px;
     }
 
+    /* Avatar with stronger adaptive shadows and clickable popup */
     .avatar {
       width: 120px;
       height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+      transition: box-shadow 0.3s ease;
+    }
+    body.dark .avatar {
+      box-shadow: 0 8px 30px rgba(255, 255, 255, 0.2);
+    }
+    .avatar:hover {
+      box-shadow: 0 0 25px var(--accent);
     }
 
+    /* Name with dark text shadow */
     h1 {
       font-size: 2.5rem;
       color: var(--accent);
+      text-shadow: 3px 3px 8px rgba(0,0,0,0.6);
+      transition: text-shadow 0.3s ease;
+    }
+    body.dark h1 {
+      text-shadow: 3px 3px 10px rgba(255, 255, 255, 0.3);
     }
 
     .typing {
@@ -94,17 +116,21 @@
       color: var(--text);
     }
 
+    /* Section styling with adaptive shadow */
     .section {
       background: var(--section-bg);
       padding: 24px;
       border-radius: 10px;
       margin-bottom: 30px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
       opacity: 0;
       transform: translateY(50px);
-      transition: all 0.6s ease-out;
+      transition: all 0.6s ease-out, box-shadow 0.3s ease;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
     }
-
+    body.dark .section {
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.12);
+    }
     .section.visible {
       opacity: 1;
       transform: translateY(0);
@@ -114,6 +140,21 @@
       font-size: 1.6rem;
       margin-bottom: 15px;
       color: var(--accent);
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+      transition: text-shadow 0.3s ease;
+    }
+    body.dark .section h2 {
+      text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Skills with bouncing glow effect */
+    @keyframes bounce-glow {
+      0%, 100% {
+        box-shadow: 0 0 10px var(--accent-dark);
+      }
+      50% {
+        box-shadow: 0 0 20px var(--accent-dark);
+      }
     }
 
     .skills-list {
@@ -132,13 +173,16 @@
       font-weight: bold;
       transition: 0.3s;
       cursor: pointer;
+      animation: bounce-glow 2.5s infinite;
+      box-shadow: 0 0 12px var(--accent);
     }
-
     .skills-list li:hover {
-      transform: scale(1.05);
-      background: #005999;
+      transform: scale(1.1);
+      background: var(--accent-dark);
+      box-shadow: 0 0 20px var(--accent-dark);
     }
 
+    /* Download button style */
     .download-btn {
       background: var(--accent);
       color: white;
@@ -152,25 +196,76 @@
       font-weight: bold;
       transition: 0.3s ease;
     }
-
     .download-btn:hover {
-      background: #005999;
+      background: var(--accent-dark);
     }
 
+    /* Instagram icon button */
+    .insta-button {
+      display: inline-flex;
+      align-items: center;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      margin-top: 10px;
+      transition: transform 0.2s ease;
+    }
+    .insta-button:hover {
+      transform: scale(1.1);
+    }
+    .insta-icon {
+      width: 32px;
+      height: 32px;
+      fill: #E1306C; /* Instagram pink/red */
+      transition: fill 0.3s ease;
+    }
+    body.dark .insta-icon {
+      fill: #ffffff;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
       .header {
         flex-direction: column;
         align-items: flex-start;
       }
-
       h1 {
         font-size: 2rem;
       }
-
       .avatar {
         width: 100px;
         height: 100px;
       }
+    }
+
+    /* Popup Modal styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .modal-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 0 50px var(--accent);
+      cursor: default;
+    }
+    .modal-content img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
     }
   </style>
 </head>
@@ -180,14 +275,20 @@
 
   <div class="container" id="smooth-content">
     <div class="header">
-      <img src="HD-wallpaper-obito-uchia-akatsuki-naruto-obitouchia.jpg" alt="Bhavesh Suthar" class="avatar">
+      <img src="HD-wallpaper-obito-uchia-akatsuki-naruto-obitouchia.jpg" alt="Bhavesh Suthar" class="avatar" id="avatarPopup">
       <div>
         <h1>Bhavesh Suthar</h1>
         <div class="typing" id="typing"></div>
-        <p>Email: bhaveshsutharb830@gmail.com</p>
-        <p>Phone: +91-7715915731</p>
+        <p>Email: <a href="mailto:bhaveshsutharb830@gmail.com" style="color: var(--accent); text-decoration:none;">bhaveshsutharb830@gmail.com</a></p>
+        <p>Phone: <a href="tel:+917715915731" style="color: var(--accent); text-decoration:none;">+91-7715915731</a></p>
         <p>Location: Mumbai, Maharashtra</p>
         <a href="Bhavesh_Suthar_Resume.pdf" class="download-btn" download>📄 Download Resume</a>
+        <br />
+        <button class="insta-button" onclick="openInstagram()" aria-label="Open Instagram Profile">
+          <svg class="insta-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+            <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm4.75-.75a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5z"/>
+          </svg>
+        </button>
       </div>
     </div>
 
@@ -235,14 +336,20 @@
     </div>
   </div>
 
-  <!-- ✅ Scripts -->
+  <!-- Modal popup for avatar -->
+  <div id="avatarModal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <img src="HD-wallpaper-obito-uchia-akatsuki-naruto-obitouchia.jpg" alt="Bhavesh Suthar Large Photo">
+    </div>
+  </div>
+
   <script>
-    // ✅ Dark Mode Toggle
+    // Dark Mode Toggle
     function toggleDarkMode() {
       document.body.classList.toggle("dark");
     }
 
-    // ✅ Typing Animation
+    // Typing Animation
     const roles = ["Aspiring Developer", "Learning Full-Stack", "Problem Solver"];
     let index = 0, char = 0;
     const typingDiv = document.getElementById("typing");
@@ -263,7 +370,7 @@
     }
     type();
 
-    // ✅ Scroll Animation with Intersection Observer
+    // Scroll Animation with Intersection Observer
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -273,10 +380,34 @@
     }, {
       threshold: 0.2
     });
-
     document.querySelectorAll('.section').forEach(section => {
       observer.observe(section);
     });
+
+    // Instagram link opener
+    function openInstagram() {
+      window.open("https://instagram.com/bhaveshsuthar9", "_blank");
+    }
+
+    // Avatar popup modal open/close
+    const avatar = document.getElementById("avatarPopup");
+    const modal = document.getElementById("avatarModal");
+
+    avatar.addEventListener("click", () => {
+      modal.style.display = "flex";
+    });
+
+    function closeModal() {
+      modal.style.display = "none";
+    }
+
+    // Close modal on Escape key
+    window.addEventListener("keydown", (e) => {
+      if(e.key === "Escape" && modal.style.display === "flex") {
+        closeModal();
+      }
+    });
   </script>
+
 </body>
 </html>

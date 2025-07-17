@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>Bhavesh Suthar - CV</title>
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
   <style>
@@ -46,9 +46,10 @@
     }
 
     .container {
+      width: 90%;
       max-width: 900px;
-      margin: 60px auto;
-      padding: 30px;
+      margin: 5vh auto;
+      padding: 5vw;
       background: var(--card);
       border-radius: 12px;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
@@ -81,30 +82,31 @@
       margin-bottom: 40px;
     }
 
-    /* Avatar with stronger adaptive shadows and clickable popup */
     .avatar {
-      width: 120px;
-      height: 120px;
+      width: clamp(80px, 20vw, 120px);
+      height: clamp(80px, 20vw, 120px);
       border-radius: 50%;
       object-fit: cover;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
       cursor: pointer;
       transition: box-shadow 0.3s ease;
     }
+
     body.dark .avatar {
       box-shadow: 0 8px 30px rgba(255, 255, 255, 0.2);
     }
+
     .avatar:hover {
       box-shadow: 0 0 25px var(--accent);
     }
 
-    /* Name with dark text shadow */
     h1 {
       font-size: 2.5rem;
       color: var(--accent);
       text-shadow: 3px 3px 8px rgba(0,0,0,0.6);
       transition: text-shadow 0.3s ease;
     }
+
     body.dark h1 {
       text-shadow: 3px 3px 10px rgba(255, 255, 255, 0.3);
     }
@@ -114,9 +116,9 @@
       margin-top: 5px;
       font-weight: bold;
       color: var(--text);
+      min-height: 1.5em;
     }
 
-    /* Section styling with adaptive shadow */
     .section {
       background: var(--section-bg);
       padding: 24px;
@@ -128,9 +130,11 @@
       transition: all 0.6s ease-out, box-shadow 0.3s ease;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
     }
+
     body.dark .section {
       box-shadow: 0 8px 25px rgba(255, 255, 255, 0.12);
     }
+
     .section.visible {
       opacity: 1;
       transform: translateY(0);
@@ -143,11 +147,11 @@
       text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
       transition: text-shadow 0.3s ease;
     }
+
     body.dark .section h2 {
       text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.3);
     }
 
-    /* Skills with bouncing glow effect */
     @keyframes bounce-glow {
       0%, 100% {
         box-shadow: 0 0 10px var(--accent-dark);
@@ -176,13 +180,13 @@
       animation: bounce-glow 2.5s infinite;
       box-shadow: 0 0 12px var(--accent);
     }
+
     .skills-list li:hover {
       transform: scale(1.1);
       background: var(--accent-dark);
       box-shadow: 0 0 20px var(--accent-dark);
     }
 
-    /* Download button style */
     .download-btn {
       background: var(--accent);
       color: white;
@@ -196,11 +200,11 @@
       font-weight: bold;
       transition: 0.3s ease;
     }
+
     .download-btn:hover {
       background: var(--accent-dark);
     }
 
-    /* Instagram icon button */
     .insta-button {
       display: inline-flex;
       align-items: center;
@@ -211,20 +215,22 @@
       margin-top: 10px;
       transition: transform 0.2s ease;
     }
+
     .insta-button:hover {
       transform: scale(1.1);
     }
+
     .insta-icon {
       width: 32px;
       height: 32px;
-      fill: #E1306C; /* Instagram pink/red */
+      fill: #E1306C;
       transition: fill 0.3s ease;
     }
+
     body.dark .insta-icon {
       fill: #ffffff;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .header {
         flex-direction: column;
@@ -233,15 +239,31 @@
       h1 {
         font-size: 2rem;
       }
-      .avatar {
-        width: 100px;
-        height: 100px;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      .typing {
+        font-size: 1rem;
+      }
+      .skills-list {
+        flex-direction: column;
+        gap: 6px;
+      }
+      .skills-list li {
+        width: 100%;
+        text-align: center;
+      }
+      .download-btn {
+        width: 100%;
+        text-align: center;
       }
     }
 
-    /* Popup Modal styles */
     .modal {
-      display: none; /* Hidden by default */
+      display: none;
       position: fixed;
       z-index: 2000;
       left: 0;
@@ -254,16 +276,22 @@
       justify-content: center;
       cursor: pointer;
     }
+
     .modal-content {
-      max-width: 90vw;
-      max-height: 90vh;
+      width: 90vw;
+      max-height: 80vh;
+      margin: auto;
+      padding: 0;
       border-radius: 12px;
       box-shadow: 0 0 50px var(--accent);
       cursor: default;
     }
+
     .modal-content img {
       width: 100%;
       height: auto;
+      max-height: 100%;
+      object-fit: contain;
       border-radius: 12px;
       display: block;
     }
@@ -336,7 +364,6 @@
     </div>
   </div>
 
-  <!-- Modal popup for avatar -->
   <div id="avatarModal" class="modal" onclick="closeModal()">
     <div class="modal-content" onclick="event.stopPropagation()">
       <img src="HD-wallpaper-obito-uchia-akatsuki-naruto-obitouchia.jpg" alt="Bhavesh Suthar Large Photo">
@@ -344,24 +371,22 @@
   </div>
 
   <script>
-    // Dark Mode Toggle
     function toggleDarkMode() {
       document.body.classList.toggle("dark");
     }
 
-    // Typing Animation
     const roles = ["Aspiring Developer", "Learning Full-Stack", "Problem Solver"];
     let index = 0, char = 0;
     const typingDiv = document.getElementById("typing");
 
     function type() {
+      if (char === 0) typingDiv.textContent = "";
       if (char < roles[index].length) {
         typingDiv.textContent += roles[index].charAt(char);
         char++;
         setTimeout(type, 100);
       } else {
         setTimeout(() => {
-          typingDiv.textContent = "";
           char = 0;
           index = (index + 1) % roles.length;
           type();
@@ -370,26 +395,22 @@
     }
     type();
 
-    // Scroll Animation with Intersection Observer
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
         }
       });
-    }, {
-      threshold: 0.2
-    });
+    }, { threshold: 0.2 });
+
     document.querySelectorAll('.section').forEach(section => {
       observer.observe(section);
     });
 
-    // Instagram link opener
     function openInstagram() {
       window.open("https://instagram.com/bh4vesh.19", "_blank");
     }
 
-    // Avatar popup modal open/close
     const avatar = document.getElementById("avatarPopup");
     const modal = document.getElementById("avatarModal");
 
@@ -401,7 +422,6 @@
       modal.style.display = "none";
     }
 
-    // Close modal on Escape key
     window.addEventListener("keydown", (e) => {
       if(e.key === "Escape" && modal.style.display === "flex") {
         closeModal();

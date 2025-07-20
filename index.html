@@ -83,6 +83,15 @@
       -moz-osx-font-smoothing: grayscale;
       min-height: 100vh;
       position: relative;
+      /* Page load animation */
+      opacity: 0;
+      animation: pageLoad 0.8s ease-out forwards;
+    }
+
+    @keyframes pageLoad {
+      to {
+        opacity: 1;
+      }
     }
 
     body.dark {
@@ -681,6 +690,7 @@
         margin: 0;
         border-radius: 0;
         min-height: 100vh;
+        padding: var(--spacing-sm);
       }
       
       .skills-list {
@@ -714,6 +724,13 @@
       }
     }
 
+    /* Large Desktop */
+    @media (min-width: 1440px) {
+      .container {
+        padding: var(--spacing-xl);
+      }
+    }
+
     /* Landscape Mobile */
     @media (max-height: 500px) and (orientation: landscape) {
       .container {
@@ -737,6 +754,12 @@
       .social-button, .download-btn, .skills-list li, .back-to-top, .dark-mode-toggle {
         -webkit-touch-callout: none;
         -webkit-user-select: none;
+      }
+      
+      /* Better iOS font rendering */
+      body {
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
       }
     }
 
@@ -805,6 +828,11 @@
       
       .skills-list li {
         animation: none;
+      }
+      
+      body {
+        animation: none;
+        opacity: 1;
       }
     }
 
@@ -957,25 +985,28 @@
       });
     });
 
-    // Enhanced dark mode with system preference detection
+    // FIXED: Dark mode with LIGHT MODE as default
     function toggleDarkMode() {
       document.body.classList.toggle("dark");
+      
+      // Add haptic feedback for supported devices
+      if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
       
       if (typeof(Storage) !== "undefined") {
         localStorage.setItem("darkMode", document.body.classList.contains("dark"));
       }
     }
 
-    // Load saved dark mode preference or system preference
+    // CRITICAL FIX: Always start in light mode, only apply dark if explicitly saved
     if (typeof(Storage) !== "undefined") {
       const savedMode = localStorage.getItem("darkMode");
-      if (savedMode !== null) {
-        if (savedMode === "true") {
-          document.body.classList.add("dark");
-        }
-      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      // Only apply dark mode if user explicitly saved it as "true"
+      if (savedMode === "true") {
         document.body.classList.add("dark");
       }
+      // Removed system preference detection - always default to light mode
     }
 
     // Enhanced typing animation
@@ -1020,7 +1051,7 @@
       });
     }, observerOptions);
 
-    // Social media functions (Snapchat removed)
+    // Social media functions
     function openInstagram() {
       window.open("https://instagram.com/bh4vesh.19", "_blank", "noopener,noreferrer");
     }
